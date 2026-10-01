@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is Alice Calculator and How Do You Use It?</title>
+<meta name="description" content="Alice Calculator (Calculadora Alicia) shows full step-by-step working for math problems. Here's what it does and who it's built for.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --grid:#e3ecf5;
+    --ink:#1c2b3a;
+    --ink-soft:#4c6b8a;
+    --mark:#c8373b;
+    --mark-soft:#f4e2e1;
+    --card:#f7f4ec;
+    --rule:#d8e0e8;
+    --serif:'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --sans:'IBM Plex Sans', -apple-system, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  a{color:var(--mark);}
+  a:hover{color:var(--ink);}
+
+  .hero{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+    border-bottom:1px solid var(--rule);
+    padding:72px 24px 56px;
+  }
+  .hero-inner{max-width:680px;margin:0 auto;}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(2rem, 5vw, 2.9rem);
+    line-height:1.15;
+    margin:0 0 20px;
+    color:var(--ink);
+  }
+  .hero p.lede{
+    font-size:1.1rem;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 32px;
+  }
+
+  .worked-example{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:14px 20px;
+    font-family:var(--serif);
+    font-size:1.3rem;
+    color:var(--ink);
+  }
+  .worked-example .op{color:var(--mark);}
+  .worked-example .steps{
+    font-family:var(--sans);
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+  }
+
+  main{max-width:680px;margin:0 auto;padding:48px 24px 80px;}
+
+  p{margin:0 0 20px;font-size:1.02rem;}
+  .answer{
+    font-size:1.12rem;
+    padding:20px 22px;
+    background:var(--card);
+    border-left:3px solid var(--mark);
+    border-radius:2px;
+    margin:0 0 32px;
+  }
+  .answer strong{color:var(--ink);}
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.5rem;
+    color:var(--ink);
+    margin:48px 0 18px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  ul, ol{margin:0 0 22px;padding-left:1.3em;}
+  li{margin-bottom:10px;font-size:1.02rem;}
+  li strong{color:var(--ink);}
+
+  .meta-line{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    margin:0 0 8px;
+  }
+
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin:0 0 28px;
+  }
+  .compare div{
+    background:var(--card);
+    border-radius:4px;
+    padding:18px 20px;
+  }
+  .compare h3{
+    font-family:var(--serif);
+    font-size:1.02rem;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  .compare p{font-size:0.95rem;margin:0;color:var(--ink-soft);}
+  @media (max-width:560px){
+    .compare{grid-template-columns:1fr;}
+  }
+
+  .faq-item{
+    border-bottom:1px solid var(--rule);
+    padding:18px 0;
+  }
+  .faq-item:last-child{border-bottom:none;}
+  .faq-item .q{
+    font-weight:600;
+    color:var(--ink);
+    margin:0 0 6px;
+    font-size:1.02rem;
+  }
+  .faq-item .a{
+    color:var(--ink-soft);
+    margin:0;
+    font-size:0.98rem;
+  }
+
+  .conclusion{
+    margin-top:48px;
+    padding:28px 24px;
+    background:var(--card);
+    border-radius:4px;
+  }
+  .conclusion p{margin:0;color:var(--ink);}
+
+  footer{
+    max-width:680px;
+    margin:0 auto;
+    padding:0 24px 60px;
+    color:var(--ink-soft);
+    font-size:0.85rem;
+  }
+
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#15202b;
+      --grid:#1d2c3a;
+      --ink:#eef2f6;
+      --ink-soft:#9bb0c2;
+      --mark:#e2706f;
+      --mark-soft:#2a1f22;
+      --card:#1b2735;
+      --rule:#2a3a4a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15202b;
+    --grid:#1d2c3a;
+    --ink:#eef2f6;
+    --ink-soft:#9bb0c2;
+    --mark:#e2706f;
+    --card:#1b2735;
+    --rule:#2a3a4a;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>What Is Alice Calculator and How Do You Use It?</h1>
+    <p class="lede">A calculator that shows its work, not just the answer.</p>
+    <div class="worked-example">
+      <span>84 <span class="op">÷</span> 7</span>
+      <span class="steps">7 into 8 → 1, remainder 1<br>bring down 4 → 14 ÷ 7 = 2<br>answer: 12</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  <p>Stuck checking a long division problem and tired of calculators that only show the final number? <a href="https://laacalculadoraalicia.es/" target="_blank" rel="noopener">Alice Calculator</a>, also called Calculadora Alicia, was built for exactly that problem. Instead of just giving you an answer, it shows the full working, the same way you'd solve it by hand on paper.</p>
+
+  <div class="answer">
+    <strong>Alice Calculator is a free calculator tool</strong> that solves addition, subtraction, multiplication, division, square roots, and factorization while displaying every step of the process. It's available as a website and as a mobile app, and it works without an internet connection once installed.
+  </div>
+
+  <h2>Why Alice Calculator Is Different</h2>
+  <p>Most calculators give you one number and stop there. Alice Calculator shows the steps leading up to that number — carrying digits in addition, borrowing in subtraction, the full layout of a long division problem. That step-by-step view is the whole point of the tool, and it's what separates it from a basic phone calculator.</p>
+  <p>The idea reportedly started as a simple homework fix: a parent built the first version to help a child check division homework the way she was taught to do it on paper, rather than just getting a bare result with no explanation.</p>
+
+  <h2>Who Alice Calculator Is Built For</h2>
+  <ul>
+    <li><strong>Students</strong> checking homework and wanting to see where a mistake happened, not just that one happened</li>
+    <li><strong>Teachers</strong> who want to show a worked example quickly</li>
+    <li><strong>Anyone relearning basic math</strong>, since seeing the steps again can refresh skills faster than a plain answer</li>
+  </ul>
+  <p>It's built for everyday arithmetic, not advanced calculus or graphing — if you need a scientific or graphing calculator for higher-level work, this isn't the right tool.</p>
+
+  <h2>Key Features</h2>
+  <ul>
+    <li><strong>Shows full working, not just the answer</strong> — the main reason people choose it over a standard calculator</li>
+    <li><strong>Covers the core operations</strong> — addition, subtraction, multiplication, division, square roots, and factorization</li>
+    <li><strong>Works offline</strong> — the mobile app doesn't need an internet connection once installed</li>
+    <li><strong>Free to use</strong> — no payment required for the core features</li>
+    <li><strong>Simple interface</strong> — built to be usable without any calculator experience</li>
+  </ul>
+
+  <h2>How to Use Alice Calculator</h2>
+  <ol>
+    <li>Open the website or mobile app.</li>
+    <li>Pick the operation you need — addition, subtraction, multiplication, division, square root, or factorization.</li>
+    <li>Enter your numbers.</li>
+    <li>Review the result along with the full step-by-step breakdown.</li>
+  </ol>
+  <p>That's the entire process. There's no setup, login, or learning curve involved.</p>
+
+  <h2>Alice Calculator vs. a Standard Calculator</h2>
+  <div class="compare">
+    <div>
+      <h3>Standard calculator</h3>
+      <p>Faster when you just need a number. No explanation of how it got there.</p>
+    </div>
+    <div>
+      <h3>Alice Calculator</h3>
+      <p>Takes a little longer to load, but shows exactly how the answer was reached.</p>
+    </div>
+  </div>
+  <p>Alice Calculator is the better choice any time you need to understand how an answer was reached — checking homework, teaching a concept, or catching exactly where a calculation went wrong.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <p class="q">What is Alice Calculator?</p>
+    <p class="a">A free calculator that shows full step-by-step working for basic math operations, not just the final answer.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Is Alice Calculator free?</p>
+    <p class="a">Yes, the core features are free to use.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Does Alice Calculator work offline?</p>
+    <p class="a">Yes, the mobile app works without an internet connection once installed.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">What operations does it support?</p>
+    <p class="a">Addition, subtraction, multiplication, division, square roots, and factorization.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Who is Alice Calculator best for?</p>
+    <p class="a">Students checking homework, teachers showing worked examples, and anyone who wants to see the steps behind a math answer.</p>
+  </div>
+  <div class="faq-item">
+    <p class="q">Can I use Alice Calculator for advanced math like calculus?</p>
+    <p class="a">No, it's built for basic arithmetic. A scientific or graphing calculator is a better fit for advanced work.</p>
+  </div>
+
+  <div class="conclusion">
+    <p>Alice Calculator fills a specific gap: a free, simple tool that shows the full working behind a math answer instead of just the result. For students checking homework or anyone who wants to see exactly how a calculation was solved, that step-by-step view makes it worth having alongside a standard calculator.</p>
+  </div>
+</main>
+
+<footer>
+  Last verified 2026 — verify current app version before publishing.
+</footer>
+
+</body>
+</html>
